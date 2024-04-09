@@ -1,0 +1,18 @@
+current directory: F:/Rails/video1/vendor/bundle/ruby/3.2.0/gems/nio4r-2.7.1/ext/nio4r
+C:/Ruby32-x64/bin/ruby.exe extconf.rb
+
+current directory: F:/Rails/video1/vendor/bundle/ruby/3.2.0/gems/nio4r-2.7.1/ext/nio4r
+make DESTDIR\= sitearchdir\=./.gem.20240409-28288-z4pe9p sitelibdir\=./.gem.20240409-28288-z4pe9p clean
+make: *** No rule to make target 'clean'.  Stop.
+
+current directory: F:/Rails/video1/vendor/bundle/ruby/3.2.0/gems/nio4r-2.7.1/ext/nio4r
+make DESTDIR\= sitearchdir\=./.gem.20240409-28288-z4pe9p sitelibdir\=./.gem.20240409-28288-z4pe9p
+make: Nothing to be done for 'all'.
+
+current directory: F:/Rails/video1/vendor/bundle/ruby/3.2.0/gems/nio4r-2.7.1/ext/nio4r
+make DESTDIR\= sitearchdir\=./.gem.20240409-28288-z4pe9p sitelibdir\=./.gem.20240409-28288-z4pe9p install
+make: Nothing to be done for 'install'.
+
+current directory: F:/Rails/video1/vendor/bundle/ruby/3.2.0/gems/nio4r-2.7.1/ext/nio4r
+make DESTDIR\= sitearchdir\=./.gem.20240409-28288-z4pe9p sitelibdir\=./.gem.20240409-28288-z4pe9p clean
+make: *** No rule to make target 'clean'.  Stop.
