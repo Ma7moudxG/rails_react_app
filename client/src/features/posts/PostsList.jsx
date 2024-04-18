@@ -55,6 +55,8 @@ import { Link } from "react-router-dom"
                     </Link>
                 </h2>
                 <div className="post-links">
+                    <Link to={`/posts/${post.id}/edit`}>Edit</Link>
+                    {" | "}
                     <button onClick={() => deletePost(post.id)}>
                         Delete
                     </button>    
