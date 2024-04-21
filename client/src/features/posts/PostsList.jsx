@@ -1,8 +1,7 @@
 // API_URL comes from the .env.development file
 "use client"
 
-// import { API_URL } from "../../constants"
-import { API_URL }  from "../../constants"
+import { fetchAllPosts, deletePost }  from "../../services/postService"
 import React, { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 
@@ -12,34 +11,26 @@ import { Link } from "react-router-dom"
     const [posts, setPosts] = useState([]);
     const [, setLoading] = useState(true);
     const [, setError] = useState(null);
-    // Fetch posts from the API
 
     useEffect(() => {
-        fetch(API_URL)
-            .then((response) => response.json())
-            .then((data) => {
-                console.log(data);
+        async function loadPosts() {
+            try{
+                const data = await fetchAllPosts();
                 setPosts(data);
                 setLoading(false);
-            })
-            .catch((error) => {
-                setError(error);
+            } catch (error){
+                console.error("Error fetching posts", error)
                 setLoading(false);
-            });
+            }
+        }
+        loadPosts();
     }, []);
 
-    const deletePost = async (id) => {
+    const deletePostHandler = async (id) => {
         try {
-            // DELETE request to: http://localhost:3000/api/v1/posts/:id
-            const response = await fetch(`${API_URL}/${id}`, {
-                method: "DELETE",
-            });
-
-            if (response.ok) {
-                setPosts(posts.filter((post) => post.id !== id));
-            } else {
-                throw response;
-            }
+            await deletePost(id);
+            setPosts(posts.filter((post) => post.id !== id));
+            // setPosts((prevPosts) => prevPosts.filter((post) => post.id !== id));
         } catch (error) {
             console.error("Error deleting post", error);
         }
@@ -57,7 +48,7 @@ import { Link } from "react-router-dom"
                 <div className="post-links">
                     <Link to={`/posts/${post.id}/edit`}>Edit</Link>
                     {" | "}
-                    <button onClick={() => deletePost(post.id)}>
+                    <button onClick={() => deletePostHandler(post.id)}>
                         Delete
                     </button>    
                 </div>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
-import { API_URL } from '../../constants';
+import { fetchPost, updatePost } from '../../services/postService';
 
 export default function EditPostForm() {
     const [post, setPost] = useState(null);
@@ -13,15 +13,12 @@ export default function EditPostForm() {
         // fetch the current post by id
         const fetchCurrentPost = async () => {
             try {
-                const response = await fetch(`${API_URL}/${id}`);
-                if(response.ok){
-                    const data = await response.json();
-                    setPost(data);
-                } else {
-                    throw response;
-                }
-            } catch (error) {   
+                const json = await fetchPost(id);
+                setPost(json);
+            } catch (error) {
                 console.error("Error fetching post", error);
+            } finally {
+                setLoading(false);
             }
         };
         fetchCurrentPost();
@@ -29,27 +26,16 @@ export default function EditPostForm() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        const updatedPost = {
+            title: post.title,
+            body: post.body
+        };
 
         try {
-            const response = await fetch(`${API_URL}/${id}`, {
-                method: "PUT",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    title: post.title,
-                    body: post.body,
-                }),
-            });   
-            if(response.ok){
-                const json = await response.json();
-                console.log("Success:", json);
-                navigate(`/posts/${id}`);
-            } else {
-                throw response;
-            }
+            const response = await updatePost(id, updatedPost);
+            navigate(`/posts/${response.id}`);
         } catch (error) {
-            console.error("Error updating post", error);
+            console.error("Failed updating post", error);
         }
     }   
 

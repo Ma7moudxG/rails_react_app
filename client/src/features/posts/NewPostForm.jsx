@@ -3,7 +3,7 @@
 import React from 'react'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { API_URL } from '../../constants';
+import { createPost } from '../../services/postService'
 
 export default function NewPostForm() {
     const [title, setTitle] = useState("");
@@ -14,23 +14,14 @@ export default function NewPostForm() {
         e.preventDefault();
 
         const postData = { title, body };
-        console.log(API_URL)
-        console.log(JSON.stringify(postData))
-        const response = await fetch(API_URL, {
-            method: "POST",
-            headers: { 
-                "Content-Type": "application/json" 
-            },
-            body: JSON.stringify(postData),
-            });
-            console.log(response)
 
-            if(response.ok){
-                const { id } = await response.json();
-                navigate(`/posts/${id}`);
-            } else {
-                console.log("An error occurred");
-            }
+        try{
+            await createPost(postData);
+            // navigate("/");
+            navigate(`/posts/${respinse.id}`);
+        } catch (error) {
+            console.error("Failed creating post", error);
+        }
     }
     
   return (

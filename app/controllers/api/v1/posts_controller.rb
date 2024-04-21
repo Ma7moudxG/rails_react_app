@@ -35,7 +35,9 @@ class Api::V1::PostsController < ApplicationController
 
   # DELETE /posts/1
   def destroy
-    @post.destroy!
+    @post = Post.find(params[:id])
+    @post.destroy
+    head :no_content
   end
 
   private
