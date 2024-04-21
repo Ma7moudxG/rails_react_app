@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import { useParams, useNavigate, Link } from 'react-router-dom'
-import { fetchPost, deletePost as deletePostService } from '../../services/postService'
+import { fetchPost, deletePost } from '../../services/postService'
 
 export default function PostDetails() {
     const [post, setPost] = useState(null);
@@ -20,10 +20,10 @@ export default function PostDetails() {
         fetchCurrentPost(); 
     }, [id]);
 
-    const deletePost = async () => {
+    const deletePostHandler = async () => {
         try {
-            await deletePostService(id);
-            navigate("/");
+            await deletePost(id);
+            // navigate("/");
         } catch (error) {
             console.error("Error deleting post", error);
         }
@@ -40,7 +40,7 @@ export default function PostDetails() {
         {" | "}
         <Link to="/">Back to Posts</Link>
         {" | "}
-        <button onClick={deletePost}>
+        <button onClick={deletePostHandler}>
             Delete
         </button>
     </div>

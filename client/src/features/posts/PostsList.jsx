@@ -1,8 +1,7 @@
 // API_URL comes from the .env.development file
 "use client"
 
-// import { API_URL } from "../../constants"
-import { fetchAllPosts, deletePost  as deletePostService}  from "../../services/postService"
+import { fetchAllPosts, deletePost }  from "../../services/postService"
 import React, { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 
@@ -24,11 +23,12 @@ import { Link } from "react-router-dom"
                 setLoading(false);
             }
         }
+        loadPosts();
     }, []);
 
-    const deletePost = async (id) => {
+    const deletePostHandler = async (id) => {
         try {
-            await deletePostService(id);
+            await deletePost(id);
             setPosts(posts.filter((post) => post.id !== id));
             // setPosts((prevPosts) => prevPosts.filter((post) => post.id !== id));
         } catch (error) {
@@ -48,7 +48,7 @@ import { Link } from "react-router-dom"
                 <div className="post-links">
                     <Link to={`/posts/${post.id}/edit`}>Edit</Link>
                     {" | "}
-                    <button onClick={() => deletePost(post.id)}>
+                    <button onClick={() => deletePostHandler(post.id)}>
                         Delete
                     </button>    
                 </div>
