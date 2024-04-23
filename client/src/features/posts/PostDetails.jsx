@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useParams, useNavigate, Link } from 'react-router-dom'
-import { fetchPost, deletePost } from '../../services/postService'
+import { fetchPost, deletePost } from '../../services/postsService'
 
 export default function PostDetails() {
     const [post, setPost] = useState(null);
