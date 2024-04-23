@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
-import { fetchPost, updatePost } from '../../services/postService';
+import { fetchPost, updatePost } from '../../services/postsService';
 
 export default function EditPostForm() {
     const [post, setPost] = useState(null);

@@ -1,7 +1,7 @@
 // API_URL comes from the .env.development file
 "use client"
 
-import { fetchAllPosts, deletePost }  from "../../services/postService"
+import { fetchAllPosts, deletePost }  from "../../services/postsService"
 import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 
@@ -19,8 +19,9 @@ import { Link } from "react-router-dom"
                 setPosts(data);
                 setLoading(false);
             } catch (error){
-                console.error("Error fetching posts", error)
+                setError(error);
                 setLoading(false);
+                console.error("Failed to fetch posts", error)
             }
         }
         loadPosts();
