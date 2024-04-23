@@ -13,7 +13,7 @@ export default function PostDetails() {
                 const data = await fetchPost(id);
                 setPost(data);
             } catch (error) {   
-                console.error("Error fetching post", error);
+                console.error("Failed to fetch the post", error);
             }
         };  
         fetchCurrentPost(); 
@@ -24,7 +24,7 @@ export default function PostDetails() {
             await deletePost(id);
             // navigate("/");
         } catch (error) {
-            console.error("Error deleting post", error);
+            console.error("Failed to delete the post", error);
         }
     }
 
