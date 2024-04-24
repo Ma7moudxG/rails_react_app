@@ -3,7 +3,12 @@ class Api::V1::PostsController < ApplicationController
 
   # GET /posts
   def index
-    @posts = Post.order(created_at: :desc)
+    begin
+      @posts = Post.order(created_at: :desc)
+    rescue => e 
+      puts "Error: #{e}"
+    end
+    
 
     render json: @posts
   end

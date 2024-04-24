@@ -20,7 +20,8 @@ async function createPost(postData){
     const response = await fetch(API_URL, {
         method: "POST",
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*"
         },
         body: JSON.stringify(postData),
     });
