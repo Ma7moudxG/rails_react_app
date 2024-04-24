@@ -37,7 +37,8 @@ async function deletePost(id){
     const response = await fetch(`${API_URL}/${id}`, {
         method: "DELETE",
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
         },
     });
     if(!response.ok){
