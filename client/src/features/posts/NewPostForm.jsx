@@ -15,9 +15,10 @@ export default function NewPostForm() {
         const postData = { title, body };
 
         try{
+            
             await createPost(postData);
             // navigate("/");
-            navigate(`/posts/${respinse.id}`);
+            navigate(`/posts/${response.id}`);
         } catch (error) {
             console.error("Failed creating post", error);
         }

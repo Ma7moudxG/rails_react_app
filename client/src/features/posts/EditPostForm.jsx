@@ -17,6 +17,7 @@ export default function EditPostForm() {
                 setPost(json);
             } catch (error) {
                 console.error("Error fetching post", error);
+                setError(error);
             } finally {
                 setLoading(false);
             }
@@ -33,7 +34,7 @@ export default function EditPostForm() {
 
         try {
             const response = await updatePost(id, updatedPost);
-            navigate(`/posts/${response.id}`);
+            navigate(`/posts/${id}`);
         } catch (error) {
             console.error("Failed updating post", error);
         }
